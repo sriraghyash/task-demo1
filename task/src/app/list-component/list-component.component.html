@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of currentData ;let i=index" (click)="loadRecord(i)">
+                    <tr *ngFor="let item of currentData ;let i=index" (click)="loadRecord(item.id)">
                         <td><img height="45px" width="60px" [src]="carrierIcon(item.carrier.trim().toLowerCase())"></td>
                         <td>{{item.dateActivated}}</td>
                         <td>{{item.dateAdded}}</td>

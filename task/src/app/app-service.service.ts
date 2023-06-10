@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable ,of } from 'rxjs';
+import { Observable ,of,BehaviorSubject } from 'rxjs';
 import { DataModel } from './app.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServiceService {
+
+  public currentPage:BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   public listData:DataModel[] =[
     {
@@ -130,8 +132,8 @@ export class AppServiceService {
       "hasDataUsage": true,
       "hasSmsUsage": true,
       "hasVoiceUsage": true,
-      "iccid": "34",
-      "id": "34",
+      "iccid": "304",
+      "id": "304",
       "identity": "ICCID: 890000000001000001280",
       "imei": "300000000000008",
       "imsi": "310000000000008",
@@ -664,7 +666,7 @@ export class AppServiceService {
       "hasSmsUsage": true,
       "hasVoiceUsage": true,
       "iccid": "2223",
-      "id": "2223",
+      "id": "2221",
       "identity": "ICCID: 89000000000000001280",
       "imei": "300000000000008",
       "imsi": "310000000000008",
@@ -851,5 +853,8 @@ export class AppServiceService {
 
   public getListData():Observable<any>{
     return of(this.listData);
+  }
+  public setCurrentPage(page:any):void{
+    this.currentPage.next(page);
   }
 }

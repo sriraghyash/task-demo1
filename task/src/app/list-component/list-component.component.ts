@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
 import { DataModel, sortByCarrier, sortByIccid, sortById, sortByIdentity, sortByMsisdn } from '../app.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-component',
@@ -24,7 +25,8 @@ export class ListComponentComponent implements OnInit {
   public currentPage2:any;
   public currentPage3:any =-1;
 
-  constructor(private appService:AppServiceService){
+
+  constructor(private appService:AppServiceService,private router:Router){
 
   }
 
@@ -37,6 +39,12 @@ export class ListComponentComponent implements OnInit {
       this.data=x;
       this.assignPageData();
     }));
+    this.appService.currentPage.subscribe(x=>{
+      if(x){
+        this.currentPage=x;
+        this.assignPageData();
+      }
+    })
   }
   
   public calculatePageNumber():void{
@@ -146,7 +154,8 @@ export class ListComponentComponent implements OnInit {
   }
    
  
-  public loadRecord(i:number):void{
-
+  public loadRecord(i:any):void{
+    this.appService.currentPage.next(this.currentPage);
+    this.router.navigateByUrl(`/record?id=${i}`)
   }
 }

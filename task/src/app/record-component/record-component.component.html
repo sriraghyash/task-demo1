@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<div class="container">
+    <div class="card" style="width: 20rem;">
+        <img [src]="carrierIcon(data.carrier.toLowerCase())" height="250px" width="320px" >
+        <div class="card-body">
+          <h5 class="card-title">{{data.carrier}}</h5>
+          <p class="card-text">Date Activated : {{getDate(data?.dateActivated) | date :'fullDate'}}</p>
+          <p class="card-text">Date Added : {{ getDate(data?.dateAdded) | date :'fullDate'}}</p>
+          <p class="card-text">Date Modified : {{ getDate(data?.dateModified) | date :'fullDate'}}</p>
+          <p class="card-text">Has Data Usage ? : {{ data?.hasDataUsage == true? 'Yes':'No'}}</p>
+          <p class="card-text">Has Sms Usage ? : {{ data?.hasSmsUsage == true? 'Yes':'No'}}</p>
+          <p class="card-text">Has Voice Usage ? : {{ data?.hasVoiceUsage == true? 'Yes':'No'}}</p>
+          
+          <a routerLink="/list" class="btn btn-primary">Go Back</a>
+        </div>
+      </div>
+</div>
