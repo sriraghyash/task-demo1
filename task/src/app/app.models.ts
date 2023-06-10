@@ -32,3 +32,36 @@ export interface LocationAddress {
     zipCode: number | string;
     country: string;
 }
+
+
+export function sortById(a:any,b:any){
+    let result=0
+    if((Number(a.id))>Number(b.id)) result= 1;
+    else if(Number(a.id)<Number(b.id)) result= -1;
+    return result;
+}
+export function sortByIccid(a:any,b:any){
+    let result=0
+    if(a.iccid>b.iccid) result= 1;
+    else if(a.iccid<b.iccid) result= -1;
+    return result;
+}
+export function sortByCarrier(a:any,b:any){
+    let result=0
+    if(a.carrier>b.carrier) result= 1;
+    else if(a.carrier<b.carrier) result= -1;
+    return result
+}
+export function sortByMsisdn(a:any,b:any){
+    let result=0
+    if(a.msisdn>b.msisdn) result= 1;
+    else if(a.msisdn<b.msisdn) result= -1;
+    return result;
+}
+export function sortByIdentity(a:any,b:any){
+    let result=0
+    if(a.identity>b.identity) result= 1;
+    else if(a.identity<b.identity) result= -1;
+    return result;
+}
+

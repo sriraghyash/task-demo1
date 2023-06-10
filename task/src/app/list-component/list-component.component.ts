@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
-import { DataModel } from '../app.models';
+import { DataModel, sortByCarrier, sortByIccid, sortById, sortByIdentity, sortByMsisdn } from '../app.models';
 
 @Component({
   selector: 'app-list-component',
@@ -13,11 +13,16 @@ export class ListComponentComponent implements OnInit {
   public listData:any[] =[];
   public data:DataModel[]=[];
   public totalPages=0;
-  public currentPage=0;
+  public currentPage=1;
   public nextPage=0;
   public displayPerPage=5;
   public currentData:DataModel[]=[];
   public subsScriptions:Subscription[]=[];
+  public sortBy:any;
+  public noOfPages=0;
+  public currentPage1:any;
+  public currentPage2:any;
+  public currentPage3:any =-1;
 
   constructor(private appService:AppServiceService){
 
@@ -34,14 +39,33 @@ export class ListComponentComponent implements OnInit {
     }));
   }
   
+  public calculatePageNumber():void{
+    this.noOfPages = Math.ceil(this.data?.length/this.displayPerPage);
+  }
   public assignPageData():void{
     this.currentData=[]
     Object.assign(this.currentData , this.data.slice(0,this.displayPerPage));
+    this.calculatePageNumber();
+    this.calculateCurrentPages();
+    this.displayDataPerPageNumber();
+  }
+
+  calculateCurrentPages():void{
+    if(this.currentPage3<this.currentPage){
+    this.currentPage1 = this.currentPage;
+    this.currentPage2= this.currentPage+1;
+    this.currentPage3 = this.currentPage+2;
+    } else if(this.currentPage1>this.currentPage){
+      this.currentPage1 = this.currentPage;
+      this.currentPage2= this.currentPage+1;
+      this.currentPage3 = this.currentPage+2;
+    }
   }
 
   public displayDataPerPageNumber():void{
     this.currentData=[]
-    Object.assign(this.currentData,this.data.slice(this.currentPage*this.displayPerPage,this.displayPerPage))
+    if(this.currentPage)
+    Object.assign(this.currentData,this.data.slice((this.currentPage-1)*(this.displayPerPage-1), (this.currentPage-1)*(this.displayPerPage-1)+this.displayPerPage))
   }
 
   public nextPageNavigate():void{
@@ -83,6 +107,45 @@ export class ListComponentComponent implements OnInit {
     })
   }
 
+  public sortDataBy(event:string):void{
+    switch(event){
+      case 'carrier':  this.data =this.data.sort(sortByCarrier);
+      break;
+      case 'iccid': this.data = this.data.sort(sortByIccid);
+      break;
+      case 'msisdn': this.data = this.data.sort(sortByMsisdn);
+      break;
+      case 'id': this.data = this.data.sort(sortById);
+      break;
+      case 'identity': this.data = this.data.sort(sortByIdentity);
+      break;
+    }
+    this.displayDataPerPageNumber();
+  }
+
+  public navigateFirst(page?:number):void{
+    this.currentPage=1;
+    this.assignPageData();
+  }
+  public navigateNext(page?:number):void{
+    this.currentPage++;
+    this.assignPageData();
+  }
+  public navigatePrevious(page?:number):void{
+    this.currentPage--;
+    this.assignPageData();
+  }
+  public navigateLast(page?:number):void{
+    this.currentPage = this.noOfPages;
+    this.assignPageData();
+  }
+
+  public setCurrentPage(page:number):void{
+    this.currentPage=page;
+    this.assignPageData();
+  }
+   
+ 
   public loadRecord(i:number):void{
 
   }

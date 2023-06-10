@@ -43,22 +43,34 @@
             </table>
         </div>
         <div class="table-footer">
-            <div class="row">
-                <div class="com-md-8 m-1rem">
-                    <p>
-                    <span>Rows Per Page</span>&nbsp;
-                    <span><select name="displayPerPage" [(ngModel)]="displayPerPage" (ngModelChange)="optionsPerPage($event)">
-                       
-                            <option [value]="5">5</option>
-                            <option [value]="10">10</option>
-                            <option [value]="15">15</option>
-                       
-                    </select></span>
+            <div class="row container-1">
+                <div class="com-md-4 m-1rem">
+                    <p style="display: inline;">
+                        <span>Rows Per Page</span>&nbsp;
+                        <span><select name="displayPerPage" [(ngModel)]="displayPerPage"
+                                (ngModelChange)="optionsPerPage($event)">
+
+                                <option [value]="5">5</option>
+                                <option [value]="10">10</option>
+                                <option [value]="15">15</option>
+
+                            </select></span>
                     </p>
                 </div>
-                <div class="com-md-8">
+                <div class="com-md-4 m-1rem" style="float: right;">
+                    <p style="display: inline;"> 
+                        <span>Sort By</span>&nbsp;
+                        <span><select name="displayPerPage" [(ngModel)]="sortBy" (ngModelChange)="sortDataBy($event)">
+                                <option [value]="'carrier'">carrier</option>
+                                <option [value]="'iccid'">iccid</option>
+                                <option [value]="'msisdn'">msisdn</option>
+                                <option [value]="'id'">id</option>
+                                <option [value]="'identity'">identity</option>
 
+                            </select></span>
+                    </p>
                 </div>
+             
             </div>
         </div>
     </div>
