@@ -70,7 +70,20 @@
                             </select></span>
                     </p>
                 </div>
-             
+                <div class="com-md-4 m-1rem">
+                    <p style="display: inline;">
+                        <button (click)="navigateFirst(1)">First<< </button>&nbsp;<button (click)="navigatePrevious()">Previous<<</button>
+                    </p>
+                    <p style="display: inline;">
+                       <span class="hover-on" (click)="setCurrentPage(currentPage1)" [ngClass]="{ 'highlight hover-on': currentPage == currentPage1}">{{currentPage1}}</span>
+                       &nbsp;  
+                       <span class="hover-on" (click)="setCurrentPage(currentPage2)" [ngClass]="{ 'highlight hover-on': currentPage == currentPage2}"> {{currentPage2}}</span> &nbsp; 
+                       <span class="hover-on" (click)="setCurrentPage(currentPage3)"  [ngClass]="{ 'highlight hover-on': currentPage == currentPage3}">{{currentPage3}}</span>
+                    </p>
+                    <p style="display: inline;">
+                        <button (click)="navigateNext()">Next>></button>&nbsp;<button (click)="navigateLast()">Last>></button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
