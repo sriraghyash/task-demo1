@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
+import { DataModel } from '../app.models';
 
 @Component({
   selector: 'app-list-component',
@@ -10,12 +11,12 @@ import { Subscription } from 'rxjs';
 export class ListComponentComponent implements OnInit {
 
   public listData:any[] =[];
-  public data:any;
+  public data:DataModel[]=[];
   public totalPages=0;
   public currentPage=0;
   public nextPage=0;
   public displayPerPage=5;
-  public currentData:any=[];
+  public currentData:DataModel[]=[];
   public subsScriptions:Subscription[]=[];
 
   constructor(private appService:AppServiceService){
@@ -34,7 +35,22 @@ export class ListComponentComponent implements OnInit {
   }
   
   public assignPageData():void{
+    this.currentData=[]
     Object.assign(this.currentData , this.data.slice(0,this.displayPerPage));
+  }
+
+  public displayDataPerPageNumber():void{
+    this.currentData=[]
+    Object.assign(this.currentData,this.data.slice(this.currentPage*this.displayPerPage,this.displayPerPage))
+  }
+
+  public nextPageNavigate():void{
+    this.currentPage++;
+    this.displayDataPerPageNumber();
+  }
+  public previousPage():void{
+    this.currentPage--;
+    this.displayDataPerPageNumber();
   }
 
   public carrierIcon(carrierName:string):string{
@@ -57,12 +73,17 @@ export class ListComponentComponent implements OnInit {
   }
 
   public optionsPerPage(event:any):void{
-
+    this.displayPerPage= Number(event);
+    this.assignPageData();
   }
 
   public ngOnDestroy():void{
     this.subsScriptions.forEach(subscription=>{
       subscription.unsubscribe();
     })
+  }
+
+  public loadRecord(i:number):void{
+
   }
 }

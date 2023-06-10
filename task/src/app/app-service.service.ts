@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable ,of } from 'rxjs';
+import { DataModel } from './app.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppServiceService {
 
-  public listData =[
+  public listData:DataModel[] =[
     {
       "carrier": "Vodafone",
       "dateActivated": "2021-07-08T15:14:05Z",  

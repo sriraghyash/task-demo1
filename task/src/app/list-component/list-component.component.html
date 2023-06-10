@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of currentData ;let i=index">
+                    <tr *ngFor="let item of currentData ;let i=index" (click)="loadRecord(i)">
                         <td><img height="45px" width="60px" [src]="carrierIcon(item.carrier.trim().toLowerCase())"></td>
                         <td>{{item.dateActivated}}</td>
                         <td>{{item.dateAdded}}</td>
@@ -44,8 +44,17 @@
         </div>
         <div class="table-footer">
             <div class="row">
-                <div class="com-md-8">
-                 
+                <div class="com-md-8 m-1rem">
+                    <p>
+                    <span>Rows Per Page</span>&nbsp;
+                    <span><select name="displayPerPage" [(ngModel)]="displayPerPage" (ngModelChange)="optionsPerPage($event)">
+                       
+                            <option [value]="5">5</option>
+                            <option [value]="10">10</option>
+                            <option [value]="15">15</option>
+                       
+                    </select></span>
+                    </p>
                 </div>
                 <div class="com-md-8">
 
