@@ -7,12 +7,14 @@ import { ListComponentComponent } from './list-component/list-component.componen
 import { RecordComponentComponent } from './record-component/record-component.component';
 import { AppServiceService } from './app-service.service';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponentComponent,
     RecordComponentComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

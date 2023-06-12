@@ -1,3 +1,8 @@
+import * as moment from "moment";
+
+
+
+
 export interface DataModel {
     carrier: string;
     dateActivated: Date | string;
@@ -40,6 +45,12 @@ export function sortById(a:any,b:any){
     else if(Number(a.id)<Number(b.id)) result= -1;
     return result;
 }
+export function sortByIdDesc(a:any,b:any){
+    let result=0
+    if((Number(a.id))>Number(b.id)) result= -1;
+    else if(Number(a.id)<Number(b.id)) result= 1;
+    return result;
+}
 export function sortByIccid(a:any,b:any){
     let result=0
     if(a.iccid>b.iccid) result= 1;
@@ -48,8 +59,15 @@ export function sortByIccid(a:any,b:any){
 }
 export function sortByCarrier(a:any,b:any){
     let result=0
-    if(a.carrier>b.carrier) result= 1;
-    else if(a.carrier<b.carrier) result= -1;
+    if(a.carrier.toString().toLowerCase().charCodeAt(0)>b.carrier.toString().toLowerCase().charCodeAt(0)) result= 1;
+    else if(a.carrier.toString().toLowerCase().charCodeAt(0)<b.carrier.toString().toLowerCase().charCodeAt(0)) result= -1;
+    return result
+}
+export function sortByCarrierDesc(a:any,b:any){
+    debugger
+    let result=0
+    if(a.carrier.toString().toLowerCase().charCodeAt(0)>b.carrier.toString().toLowerCase().charCodeAt(0)) result= -1;
+    else if(a.carrier.toString().toLowerCase().charCodeAt(0)<b.carrier.toString().toLowerCase().charCodeAt(0)) result= 1;
     return result
 }
 export function sortByMsisdn(a:any,b:any){
@@ -62,6 +80,24 @@ export function sortByIdentity(a:any,b:any){
     let result=0
     if(a.identity>b.identity) result= 1;
     else if(a.identity<b.identity) result= -1;
+    return result;
+}
+export function sortByDate(a:any,b:any){
+    var startDate = moment( new Date(a.dateActivated), "DD.MM.YYYY");
+    var endDate = moment( new Date(b.dateActivated), "DD.MM.YYYY");
+    var diff = endDate.diff(startDate, 'days');
+    let result=0
+    if(diff>1) result= 1;
+    else if(diff<1) result= -1;
+    return result;
+}
+export function sortByDateDesc(a:any,b:any){
+    var startDate = moment( new Date(a.dateActivated), "DD.MM.YYYY");
+    var endDate = moment( new Date(b.dateActivated), "DD.MM.YYYY");
+    var diff = endDate.diff(startDate, 'days');
+    let result=0
+    if(diff>1) result= -1;
+    else if(diff<1) result= 1;
     return result;
 }
 

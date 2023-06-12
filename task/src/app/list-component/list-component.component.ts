@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
-import { DataModel, sortByCarrier, sortByIccid, sortById, sortByIdentity, sortByMsisdn } from '../app.models';
+import { DataModel, sortByCarrier, sortByCarrierDesc, sortByDate, sortByDateDesc, sortByIccid, sortById,sortByIdDesc, sortByIdentity, sortByMsisdn } from '../app.models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,6 +24,13 @@ export class ListComponentComponent implements OnInit {
   public currentPage1:any;
   public currentPage2:any;
   public currentPage3:any =-1;
+
+  public editableBooleans ={
+    idIsUp:false,
+    dateActivateIsUp:false,
+    careerIsUp:false
+
+  }
 
 
   constructor(private appService:AppServiceService,private router:Router){
@@ -157,5 +164,47 @@ export class ListComponentComponent implements OnInit {
   public loadRecord(i:any):void{
     this.appService.currentPage.next(this.currentPage);
     this.router.navigateByUrl(`/record?id=${i}`)
+  }
+
+  getDate(input:any):Date{
+    return new Date(input);
+  }
+
+  public isIdUpIconClickAction():void{
+    this.editableBooleans.idIsUp=true;
+    this.currentData.sort(sortByIdDesc);
+  }
+  public isIdDownIconClickAction():void{
+    this.editableBooleans.idIsUp=false;
+    this.currentData.sort(sortById)
+  }
+
+  public isdateActiveIconDownClickAction():void{
+    this.editableBooleans.careerIsUp=false;
+    this.currentData.sort(sortByIdDesc);
+  }
+
+  public isdateActivateUpIconClickAction():void{
+    this.editableBooleans.careerIsUp=true;
+    this.currentData.sort(sortByIdDesc);
+  }
+
+  public isCareerIconDownClickAction():void{
+    this.editableBooleans.careerIsUp=false;
+    this.currentData.sort(sortByCarrier);
+  }
+
+  public isCareerUpIconClickAction():void{
+    this.editableBooleans.careerIsUp=true;
+    this.currentData.sort(sortByCarrierDesc);
+  }
+
+  public dateIconUpClick():void{
+    this.editableBooleans.dateActivateIsUp=true;
+    this.currentData.sort(sortByDate);
+  }
+  public dateIconDOwnClick():void{
+    this.editableBooleans.dateActivateIsUp=false;
+    this.currentData.sort(sortByDateDesc);
   }
 }

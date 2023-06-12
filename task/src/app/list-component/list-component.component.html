@@ -1,50 +1,85 @@
 <div class="container">
-    <div class="item">
-
-    </div>
+    <a routerLink="/home" class="navbar-brand"> <button class="btn btn-primary" type="submit">Go Back Home</button> </a>
     <h2>List Data Component</h2>
     <div class="item">
         <div class="table-data">
-            <table border="1px">
+            <table border="1px" class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Carrier</th>
-                        <th>Date Activated</th>
-                        <th>Date Added</th>
-                        <th>Date Modified</th>
-                        <th>Has Data Usage</th>
-                        <th>Has Sms Usage</th>
-                        <th>Has Voice Usage</th>
-                        <th>Iccid</th>
-                        <th>Id</th>
-                        <th>Identity</th>
-                        <th>Imei</th>
-                        <th>Imsi</th>
-                        <th>In Session</th>
+                    <tr scope="row">
+                        <th scope="col">Carrier
+                            <span *ngIf="editableBooleans.careerIsUp==false" >
+                                <svg  (click)="isCareerUpIconClickAction()" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                                </svg>
+                            </span>
+                            <span *ngIf="editableBooleans.careerIsUp==true" >
+                                <svg (click)="isCareerIconDownClickAction()" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                            </span>
+                        </th>
+                        <th scope="col">Id
+                            <span *ngIf="editableBooleans.idIsUp==false" >
+                                <svg  (click)="isIdUpIconClickAction()" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                                </svg>
+                            </span>
+                            <span *ngIf="editableBooleans.idIsUp==true" >
+                                <svg (click)="isIdDownIconClickAction()" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                            </span>
+                        </th>
+                        <th scope="col">Date Activated
+                            <span *ngIf="editableBooleans.dateActivateIsUp==false" >
+                                <svg  (click)="dateIconUpClick()" xmlns="http://www.w3.org/2000/svg" height="1em"
+                                    viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                                </svg>
+                            </span>
+                            <span *ngIf="editableBooleans.dateActivateIsUp==true" >
+                                <svg (click)="dateIconDOwnClick()" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
+                            </span>
+                        </th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Date Modified</th>
+                        <th scope="col">Has Data Usage</th>
+                        <th scope="col">Has Sms Usage</th>
+                        <th scope="col">Has Voice Usage</th>
+                        <th scope="col">Iccid</th>
+
+                        <th scope="col">Identity</th>
+                        <th scope="col">Imei</th>
+                        <th scope="col">Imsi</th>
+                        <th scope="col">In Session</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of currentData ;let i=index" (click)="loadRecord(item.id)">
-                        <td><img height="45px" width="60px" [src]="carrierIcon(item.carrier.trim().toLowerCase())"></td>
-                        <td>{{item.dateActivated}}</td>
-                        <td>{{item.dateAdded}}</td>
-                        <td>{{item.dateModified}}</td>
-                        <td>{{item.hasDataUsage}}</td>
-                        <td>{{item.hasSmsUsage}}</td>
-                        <td>{{item.hasVoiceUsage}}</td>
-                        <td>{{item.iccid}}</td>
-                        <td>{{item.id}}</td>
-                        <td>{{item.identity}}</td>
-                        <td>{{item.imei}}</td>
-                        <td>{{item.imsi}}</td>
-                        <td>{{item.inSession}}</td>
+                    <tr scope="row" *ngFor="let item of currentData ;let i=index" (click)="loadRecord(item.id)">
+                        <td scope="col"><img height="30px" width="30px"
+                                [src]="carrierIcon(item.carrier.trim().toLowerCase())"></td>
+                        <td scope="col">{{item.id}}</td>
+                        <td scope="col"> {{getDate(item?.dateActivated) | date :'fullDate'}}</td>
+
+                        <td scope="col">{{getDate(item?.dateAdded) | date :'fullDate'}}</td>
+                        <td scope="col">{{getDate(item?.dateModified) | date :'fullDate'}}</td>
+                        <td scope="col">{{item.hasDataUsage == true ? 'Yes' : 'No'}}</td>
+                        <td scope="col">{{item.hasSmsUsage == true ?'Yes':'No'}}</td>
+                        <td scope="col">{{item.hasVoiceUsage ==true?'Yes':'No'}}</td>
+                        <td scope="col">{{item.iccid}}</td>
+
+                        <td scope="col">{{item.identity}}</td>
+                        <td scope="col">{{item.imei}}</td>
+                        <td scope="col">{{item.imsi}}</td>
+                        <td scope="col">{{item.inSession == true?'Yes':'No'}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="table-footer">
             <div class="row container-1">
-                <div class="com-md-4 m-1rem">
+                <div class="co1-md-3 m-1rem">
                     <p style="display: inline;">
                         <span>Rows Per Page</span>&nbsp;
                         <span><select name="displayPerPage" [(ngModel)]="displayPerPage"
@@ -57,32 +92,33 @@
                             </select></span>
                     </p>
                 </div>
-                <div class="com-md-4 m-1rem" style="float: right;">
-                    <p style="display: inline;"> 
-                        <span>Sort By</span>&nbsp;
-                        <span><select name="displayPerPage" [(ngModel)]="sortBy" (ngModelChange)="sortDataBy($event)">
-                                <option [value]="'carrier'">carrier</option>
-                                <option [value]="'iccid'">iccid</option>
-                                <option [value]="'msisdn'">msisdn</option>
-                                <option [value]="'id'">id</option>
-                                <option [value]="'identity'">identity</option>
-
-                            </select></span>
-                    </p>
-                </div>
-                <div class="com-md-4 m-1rem">
+                <div class="co1-md-3 m-1rem">
+                    <!-- <p style="display: inline;"> -->
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button [disabled]="currentPage==1" (click)="navigateFirst(1)" type="button"
+                            class="btn btn-primary">First<< </button>
+                                <button [disabled]="currentPage==1" type="button" class="btn btn-primary"
+                                    (click)="navigatePrevious()">Previous<< </button>
+                    </div>
+                    <!-- </p> -->
                     <p style="display: inline;">
-                        <button (click)="navigateFirst(1)">First<< </button>&nbsp;<button (click)="navigatePrevious()">Previous<<</button>
+                        <span class="hover-on" (click)="setCurrentPage(currentPage1)"
+                            [ngClass]="{ 'highlight hover-on': currentPage == currentPage1}">{{currentPage1}}</span>
+                        &nbsp;
+                        <span class="hover-on" (click)="setCurrentPage(currentPage2)"
+                            [ngClass]="{ 'highlight hover-on': currentPage == currentPage2}"> {{currentPage2}}</span>
+                        &nbsp;
+                        <span class="hover-on" (click)="setCurrentPage(currentPage3)"
+                            [ngClass]="{ 'highlight hover-on': currentPage == currentPage3}">{{currentPage3}}</span>
                     </p>
-                    <p style="display: inline;">
-                       <span class="hover-on" (click)="setCurrentPage(currentPage1)" [ngClass]="{ 'highlight hover-on': currentPage == currentPage1}">{{currentPage1}}</span>
-                       &nbsp;  
-                       <span class="hover-on" (click)="setCurrentPage(currentPage2)" [ngClass]="{ 'highlight hover-on': currentPage == currentPage2}"> {{currentPage2}}</span> &nbsp; 
-                       <span class="hover-on" (click)="setCurrentPage(currentPage3)"  [ngClass]="{ 'highlight hover-on': currentPage == currentPage3}">{{currentPage3}}</span>
-                    </p>
-                    <p style="display: inline;">
-                        <button (click)="navigateNext()">Next>></button>&nbsp;<button (click)="navigateLast()">Last>></button>
-                    </p>
+                    <!-- <p style="display: inline;"> -->
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button [disabled]="currentPage==noOfPages" (click)="navigateNext()" type="button"
+                            class="btn btn-primary">>>Next</button>
+                        <button [disabled]="currentPage==noOfPages" type="button" class="btn btn-primary"
+                            (click)="navigateLast()">>>Last</button>
+                    </div>
+                    <!-- </p> -->
                 </div>
             </div>
         </div>
