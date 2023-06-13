@@ -99,7 +99,7 @@
                             class="btn btn-primary">First<< </button>
                                 <button [disabled]="currentPage==1" type="button" class="btn btn-primary"
                                     (click)="navigatePrevious()">Previous<< </button>
-                    </div>
+                    </div>&nbsp;
                     <!-- </p> -->
                     <p style="display: inline;">
                         <span class="hover-on" (click)="setCurrentPage(currentPage1)"
@@ -110,7 +110,12 @@
                         &nbsp;
                         <span class="hover-on" (click)="setCurrentPage(currentPage3)"
                             [ngClass]="{ 'highlight hover-on': currentPage == currentPage3}">{{currentPage3}}</span>
-                    </p>
+                            &nbsp;
+                            <span class="hover-on" (click)="setCurrentPage(currentPage4)"
+                            [ngClass]="{ 'highlight hover-on': currentPage == currentPage4}">{{currentPage4}}</span>
+                            &nbsp; <span class="hover-on" (click)="setCurrentPage(currentPage5)"
+                            [ngClass]="{ 'highlight hover-on': currentPage == currentPage5}">{{currentPage5}}</span>
+                    </p>&nbsp;
                     <!-- <p style="display: inline;"> -->
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button [disabled]="currentPage==noOfPages" (click)="navigateNext()" type="button"

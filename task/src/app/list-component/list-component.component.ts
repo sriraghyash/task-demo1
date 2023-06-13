@@ -23,7 +23,9 @@ export class ListComponentComponent implements OnInit {
   public noOfPages=0;
   public currentPage1:any;
   public currentPage2:any;
-  public currentPage3:any =-1;
+  public currentPage3:any ;
+  public currentPage4:any;
+  public currentPage5:any=-1
 
   public editableBooleans ={
     idIsUp:false,
@@ -66,14 +68,18 @@ export class ListComponentComponent implements OnInit {
   }
 
   calculateCurrentPages():void{
-    if(this.currentPage3<this.currentPage){
+    if(this.currentPage5<this.currentPage){
     this.currentPage1 = this.currentPage;
     this.currentPage2= this.currentPage+1;
     this.currentPage3 = this.currentPage+2;
+    this.currentPage4 = this.currentPage+3;
+    this.currentPage5 = this.currentPage+4;
     } else if(this.currentPage1>this.currentPage){
       this.currentPage1 = this.currentPage;
       this.currentPage2= this.currentPage+1;
       this.currentPage3 = this.currentPage+2;
+      this.currentPage4 = this.currentPage+3;
+      this.currentPage5 = this.currentPage+4;
     }
   }
 
